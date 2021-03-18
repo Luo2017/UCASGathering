@@ -1,0 +1,77 @@
+<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<style type="text/css">
+  /*包含以下四种的链接*/
+  a {
+    text-decoration: none;
+    color: #000000;
+  }
+
+  /*正常的未被访问过的链接*/
+  a:link {
+    text-decoration: none;
+  }
+
+  /*已经访问过的链接*/
+  a:visited {
+    text-decoration: none;
+  }
+
+  /*鼠标划过(停留)的链接*/
+  a:hover {
+    text-decoration: none;
+    background: none;
+  }
+
+  /* 正在点击的链接*/
+  a:active {
+    text-decoration: none;
+  }
+</style>
+<div class="panel panel-default">
+  <div class="panel-heading" style="font-size: 50px">
+    <span class="glyphicon glyphicon-list"></span>&nbsp;&nbsp;我发起的活动列表
+  </div>
+  <div class="panel-body">
+    <!--     面板内容-->
+    <li style="width: 100%;height: 190px;background: #f4f4f4">
+      <!--        左边活动图片-->
+      <div style="width: 15%;height:170px;background: #cccccc;float: left">
+
+      </div>
+      <!--        右边活动详情-->
+      <div style="float: left;margin-left:10px;font-size: 40px">
+        <div style="font-weight: bold">一起来玩狼人杀吗</div>
+        <div><span>聚会</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当前人数：20人</span></div>
+        <div><span>时间:本周末下午3:00</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;地点:教一楼001</span></div>
+      </div>
+      <div style="clear: both"></div>
+    </li>
+    <% @activity_Mylist.each do |item| %>
+      <li style="width: 100%;height: 180px;background: #f4f4f4">
+        <!--        左边活动图片-->
+        <div style="width: 15%;height:170px;background: #cccccc;float: left">
+
+        </div>
+        <!--        右边活动详情-->
+        <div style="float: left;margin-left:10px;font-size: 40px">
+          <div style="font-weight: bold"><%= item.AcTitle %></div>
+          <div><span><%= item.AcStatus %></span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当前人数：<%= item.AcCount %>人</span></div>
+          <div><span>时间:<%= item.AcStartTime %></span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;地点:<%= item.AcSitu %></span></div>
+        </div>
+        <div style="clear: both"></div>
+      </li>
+    <% end %>
+  </div>
+</div>
+</div>
+<div style="float: right;font-size: 50px;margin-right: 20px"><a href="/admin/personal"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;返回</a></div>

@@ -1,0 +1,30 @@
+<% if !activities.nil?&&activities.count!=0 %>
+
+<div class="row">
+      <div class="van-cell">
+        <div class="van-cell__title"> 
+          <span style="font-size:18px;font-weight:bold;" ><%= name%></span>
+        </div>
+        <div class="van-cell__value van-coupon-cell__value">
+          <span>全部 <%=activities.count%></span>
+        </div>
+        <div class="van-icon van-cell__right-icon">
+          <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+        </div>
+      </div>     
+      <div class="slide-box">
+      <% activities.each do |activity| %>
+          <div class="slide-item" onclick="location.href='/activities/<%=activity.id%>'">
+              <div class="card" style="width: 13rem">
+                <%= image_tag(activity.picture.url, class: 'initImg coverImg') if activity.picture? %>
+                <%= image_tag("without_picture.png", :class=>'initImg coverImg') if !activity.picture? %>
+                <div class="card-body">
+                  <h5 class="card-title"><%= activity.AcTitle %></h5>
+                  <p class="card-text"><%= activity.AcStartTime.strftime('%Y-%m-%d %H:%M:%S') %></p>
+                </div>
+              </div>
+          </div>
+      <% end %>
+      </div>
+    </div>
+<% end %>

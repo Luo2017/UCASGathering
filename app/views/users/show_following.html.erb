@@ -1,0 +1,31 @@
+<div class="container">
+<div class="row">
+<div class="col-md-8 activity-show-card activity-show-card-3">
+
+<% provide(:title, @title) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1><%= link_to @user.username, @user %></h1>
+      <span><%= @user.following.count %>个活动</span>
+    </section>
+    <section class="stats">
+      <%= render 'share/stats_user' %>
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <%= render '/layouts/activities/header'%>
+    <% if @activitys.any? %>
+      <ul class="activitys followed">
+        <%= render @activitys %>
+      </ul>
+    <% end %>
+  </div>
+</div>
+
+
+</div>
+</div>
+</div>
+
+<%=render 'layouts/activities/footer'%>

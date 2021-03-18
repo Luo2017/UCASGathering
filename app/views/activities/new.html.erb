@@ -1,0 +1,12 @@
+
+<% provide(:title, "创建一个新活动")%>
+<%= render '/layouts/activities/header'%>
+
+<br>
+
+
+<%# <%= link_to '返回', activities_path %> 
+
+<%= render 'form', activity: @activity %>
+<%= render '/layouts/activities/footer' %>
+

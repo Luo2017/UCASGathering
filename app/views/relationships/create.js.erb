@@ -1,0 +1,4 @@
+<!--使用 CSS ID 查找 follow_form,修改该 DOM 对象内容为 users/unfollow 局部视图内容 -->
+$("#follow_form").html("<%= escape_javascript(render('users/unfollow')) %>");
+
+$("#followers").html('<%= @activity.followers.count %>');

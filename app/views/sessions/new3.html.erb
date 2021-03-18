@@ -1,0 +1,20 @@
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<% provide(:title, "密码登陆") %>
+<!--上部-->
+<div style="width:100%;height: 600px;background: #09a7c6">
+  <div style="float: right;width: 10%;font-size: 40px;margin-top: 30px;margin-right: 30px" ><%= link_to( "注册", new_user_path,class: "text-white") %> </div>
+  <img src="/assets/logo" alt="logo" width=450px  height=450px style="margin-top: 100px;margin-left: 270px"/>
+</div>
+<!--表单部分-->
+<%= form_for(:session, url: login3_path) do |f| %>
+  <div style="margin: auto;text-align: center;margin-top: 100px;font-size: 50px;"><input placeholder="请输入手机号" type="text" name="session[usermobile]" id="session_usermobile" style="width:90%;height:100px;BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: solid"></div>
+  <div style="margin: auto;text-align: center;margin-top: 100px;font-size: 50px;"><input type="password" name="session[password]" id="session_password" style="width:90%;height:100px;BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: solid"></div>     
+  <div style="margin: auto;text-align: center;margin-top: 20px"><input type="submit" name="commit" value="登陆" data-disable-with="登陆" style="border-radius: 20px;background-color: #09a7c6;width:60%;font-size: 50px;height:100px;"></div>
+  <div style="margin: auto;text-align: center;margin-top: 10px;font-size: 40px; color: #d9e0e8"><%= link_to "验证码登陆", login_path,class: "text-dark" %></div> 
+<% end %>
+<% flash.each do |key, value| %>
+<div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>

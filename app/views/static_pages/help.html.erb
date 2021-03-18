@@ -1,0 +1,386 @@
+<title><%= full_title("Help") %></title>
+<!-- 移动端需要增加的 -->
+<meta name="App-Config" content="fullscreen=yes,useHistoryState=yes,transition=yes">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="yes" name="apple-touch-fullscreen">
+<meta content="telephone=no,email=no" name="format-detection">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<link href="bootstrap.min.css" rel="stylesheet">
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+
+<script>
+/*
+ * 功能：    拓展String类型方法，添加常用功能
+ * 创建人：  焰尾迭
+ * 创建时间：2015-11-18
+ */
+$.extend(String.prototype,{format:function(e){var t=this;if(arguments.length>0)if(1==arguments.length&&"object"==typeof e){for(var s in e)if(void 0!=e[s]){var a=new RegExp("({"+s+"})","g");t=t.replace(a,e[s])}}else for(var i=0;i<arguments.length;i++)if(void 0!=arguments[i]){var a=new RegExp("({)"+i+"(})","g");t=t.replace(a,arguments[i])}return t}}),/*!
+ @Name：fiterMore v1.0 互联网风格筛选条件插件
+ @Author：焰尾迭
+ @Site：http://yanwei.cnblogs.com
+ @github: http://aui.github.com/fiterMore
+ @License：LGPL
+ */
+ function(e) {
+    e.fn.extend({
+        fiterMore: function(t) {
+            function s() {
+                var t = "";
+                e(_.searchBoxs).each(function(e, s) {
+                    t += '<div class="searchbox-item" {0} data-id="{1}" id="{2}">'.format(e + 1 == _.searchBoxs.length ? 'style="border: 0"': "", e, s.id) + '<div class="l" id="{1}_l">{0}<i></i></div>'.format(s.title, s.id) + '<div class="c" id="{0}_c">'.format(s.id) + '<div class="control-type">({0})</div><div class="filter_option" style="padding-right:{1}px;">'.format(s.isMultiple ? "多选": "单选", a(s) + 20) + i(s) + "</div>" + l(e, s) + "</div>" + '<a href="javascript:;" class="r" id="{0}_r"><span class="text">展开</span></a>'.format(s.id) + "</div>"
+                }),
+                m.html(t),
+                e(".searchbox .searchbox-item").each(function(t) {
+                    var s = e(this).find(".filter_option").outerHeight();
+                    s <= 30 && e(this).find(".r").remove()
+                }),
+                _.expandRow < _.searchBoxs.length && m.after(x)
+            }
+            function a(e) {
+                return e.custom ? 1 == e.custom.isRange ? "date" == e.type ? 320 : "datetime" == e.type ? 440 : 260 : "date" == e.type ? 200 : "datetime" == e.type ? 260 : 170 : 0
+            }
+            function i(t) {
+                var s = ""; (t.isMultiple || !t.isMultiple && t.isShowAll) && (s = '<span title="全部" class="option_all {0}">全部</span>'.format(t.defaults && 0 != t.defaults.length ? "": "selected"));
+                var a = r(t),
+                i = h;
+                if (a && !isNaN(t.expand.max)) {
+                    var l = parseInt(t.expand.max, 10);
+                    i = i > l ? l: i
+                }
+                return e(t.data).each(function(l, n) {
+                    a && 1 + l > i || (s += '<span title="{0}" data-id="{1}" data-value="{3}" {2}>{0}</span>'.format(n[t.textField], l, e.inArray(n[t.valueField], t.defaults) >= 0 ? "class='selected'": "", n[t.valueField]))
+                }),
+                s
+            }
+            function l(e, t) {
+                if (t.custom) {
+                    var s = "70px";
+                    "date" == t.type ? s = "100px": "datetime" == t.type && (s = "160px");
+                    var i = '<div class="filter_custom" style="width:{0}px;"><span>自定义</span>'.format(a(t));
+                    return i += '<span><input type="text" id="{0}_c_custom_start" style="width:{1};"></span>'.format(t.id, s),
+                    t.custom.isRange && (i += "<span>—</span>" + '<span><input type="text" id="{0}_c_custom_end" {1}></span>'.format(t.id, s ? "style='width:{0}'".format(s) : "")),
+                    i += '<span class="btn_filter_sure" data-id="{0}">确定</span></div>'.format(e)
+                }
+                return ""
+            }
+            function n(t) {
+                return e(t).closest(".searchbox-item").attr("data-id")
+            }
+            function c(e) {
+                var t = n(e);
+                return _.searchBoxs[t]
+            }
+            function o() {
+                var t = [],
+                s = null;
+                return e(_.searchBoxs).each(function(e, a) {
+                    s = {},
+                    a.customSelectd.length > 0 ? s[_.paramCustomkey] = a.customSelectd: s[_.paramkey] = a.selected,
+                    s.isMultiple = a.isMultiple,
+                    s.id = a.srcID,
+                    t.push(s)
+                }),
+                t
+            }
+            function r(e) {
+                return e.expand && "function" == typeof e.expand.event
+            }
+            function d(t, s, a) {
+                function i(t) {
+                    var s = e(t).find(".text");
+                    return "展开" == s.text() ? "expand": "collaspe"
+                }
+                t.cancelBubble = !0;
+                var l = i(s);
+                if (!a || a != l) {
+                    var n = e(s).siblings(".c");
+                    if ("expand" == l ? (e(s).find(".text").text("收缩"), e(s).siblings(".c").css({
+                        height: "auto"
+                    })) : (e(s).find(".text").text("展开"), n.css({
+                        height: 30
+                    })), "展开条件" == x.find("span").text()) {
+                        var o = 0,
+                        d = 0;
+                        e(".searchbox-item").each(function(t, s) {
+                            "收缩" == e(s).find(".text").text() && (o++, d += e(s).find(".c").height())
+                        });
+                        var u = 40 * (_.expandRow - o) + 9 * o + d;
+                        0 == o && (u = y),
+                        m.css({
+                            height: u
+                        })
+                    }
+                    var f = c(s);
+                    r(f) && f.expand.event(f.data, s, l)
+                }
+            }
+            function u(t) {
+                t.custom && t.customSelectd.length > 0 && (t.customSelectd = [], e("#{0}_c_custom_start".format(t.id)).val(""), t.custom.isRange && e("#{0}_c_custom_end".format(t.id)).val(""))
+            }
+            function f(t) {
+                t.custom && t.customSelectd.length > 0 && (e("#{0}_c_custom_start".format(t.id)).val(t.customSelectd[0]), t.custom.isRange && e("#{0}_c_custom_end".format(t.id)).val(t.customSelectd[1]))
+            }
+            function p(t) {
+                function s(e, t) {
+                    if (0 == t.defaults.length) e.filter(".option_all").addClass("selected");
+                    else for (var s = 0; s < t.defaults.length; s++) e.filter("[data-value='{0}']".format(t.defaults[s])).addClass("selected"),
+                    t.selected.push(t.defaults[s])
+                }
+                if (e.isArray(t)) {
+                    for (var a = {},
+                    i = null,
+                    l = 0,
+                    n = t.length; l < n; l++) i = t[l],
+                    a[i.id] = i;
+                    var c;
+                    e(_.searchBoxs).each(function(t, l) {
+                        if (i = a[l.srcID], c = e("#" + l.id).find(".filter_option span"), c.removeClass("selected"), u(l), l.selected = [], i) {
+                            var n = i[_.paramkey],
+                            o = i[_.paramCustomkey];
+                            if (n && n.length > 0) for (var t = 0; t < n.length && (c.filter("[data-value='{0}']".format(n[t])).addClass("selected"), l.selected.push(n[t]), l.isMultiple); t++);
+                            else if (o && o.length > 0) {
+                                for (var t = 0; t < o.length; t++) l.customSelectd.push(o[t]);
+                                f(l)
+                            } else s(c, l)
+                        } else s(c, l)
+                    })
+                }
+            }
+            var h = 10,
+            v = "searchitem_",
+            m = this,
+            x = e('<div class="filter_btn"><span class="expand">展开条件</span></div>'),
+            g = {
+                expandEvent: function(e) {},
+                expandRow: 2,
+                searchBoxs: [],
+                search: function(e) {},
+                paramkey: "ValueList",
+                paramCustomkey: "CustomList",
+                searchOnSelect: !0
+            },
+            _ = e.extend(g, t);
+            if (isNaN(_.expandRow) || _.expandRow < 1) throw Error("默认展开条件数'expandRow'必须为大于0的整数");
+            _.expandRow > _.searchBoxs.length && (_.expandRow = _.searchBoxs.length);
+            var y = 40 * _.expandRow - 1 * (_.expandRow - 1);
+            return m.css({
+                height: y
+            }),
+            e(_.searchBoxs).each(function(e, t) {
+                t.id && "string" == typeof t.id ? (t.srcID = t.id, t.id = "{0}{1}".format(v, t.id)) : (t.srcID = e, t.id = "{0}{1}".format(v, e)),
+                t.valueField || t.textField ? (t.valueField && !t.textField && (t.textField = t.valueField), t.textField && !t.valueField && (t.valueField = t.textField)) : (t.valueField = "value", t.textField = "text"),
+                t.defaults || (t.defaults = []),
+                t.selected = [];
+                for (var s = 0; s < t.defaults.length; s++) t.selected.push(t.defaults[s]);
+                t.customSelectd = [],
+                void 0 == t.isMultiple && (t.isMultiple = !1),
+                void 0 == t.isShowAll && (t.isShowAll = !0)
+            }),
+            s(),
+            m.on("click select", ".filter_option span",
+            function(t) {
+                var s = c(this),
+                a = e(this).attr("data-id"),
+                i = "select";
+                if (0 == s.isMultiple || e(this).hasClass("option_all")) e(this).addClass("selected").siblings("span").removeClass("selected"),
+                s.selected = [],
+                e(this).hasClass("option_all") ? i = "cancelall": (s.selected.push(s.data[a][s.valueField]), i = "selectremove");
+                else if (e(this).hasClass("selected")) {
+                    e(this).removeClass("selected"),
+                    i = "cancel";
+                    for (var l = s.data[a][s.valueField], n = 0, r = s.selected.length; n < r; n++) s.selected[n] == l && s.selected.splice(n, 1);
+                    0 == s.selected.length && (e(this).siblings(".option_all").addClass("selected"), i = "cancelall")
+                } else e(this).addClass("selected"),
+                e(this).siblings(".option_all").removeClass("selected"),
+                s.selected.push(s.data[a][s.valueField]),
+                i = "select";
+                u(s),
+                "function" == typeof s.onSelect && "click" == t.type && s.onSelect(s.data[a], i),
+                "function" == typeof _.search && _.searchOnSelect && _.search(o())
+            }),
+            m.on("click", ".r",
+            function(e, t) {
+                d(e, this, t)
+            }),
+            x.find("span").on("click",
+            function() {
+                var t = !0;
+                e(this).hasClass("expand") ? (e(this).text("收缩条件").removeClass("expand"), m.css({
+                    height: "auto"
+                })) : (e(this).text("展开条件").addClass("expand"), m.css({
+                    height: y
+                }), t = !1),
+                "function" == typeof _.expandEvent && _.expandEvent(t)
+            }),
+            m.on("click", ".filter_custom .btn_filter_sure",
+            function() {
+                var t, s = e(this).attr("data-id"),
+                a = _.searchBoxs[s],
+                i = e("#{0}_c_custom_start".format(a.id)).val();
+                a.custom.isRange && (t = e("#{0}_c_custom_end".format(a.id)).val()),
+                ("function" != typeof a.custom.event || a.custom.event(i, t)) && (e(this).closest(".filter_custom").siblings(".filter_option").find("span").removeClass("selected"), a.selected = [], a.customSelectd[0] = i, a.custom.isRange && (a.customSelectd[1] = t), "function" == typeof _.search && _.search(o()))
+            }),
+            m.each(function() {
+                this.getParamList = o,
+                this.setValue = p,
+                this.isFiterMore = !0
+            })
+        },
+        getParamList: function() {
+            var e = this[0];
+            if (e.isFiterMore) return e.getParamList()
+        },
+        searchFunctionCall: function(t) {
+            if (e.isPlainObject(t)) {
+                var s = this[0];
+                if (s.isFiterMore) for (var a in t) return e.isFunction(s[a]) ? s[a](t[a]) : (console.error("查询插件fiterMore不支持“{0}”方法".format(a)), null)
+            }
+        }
+    })
+} (jQuery);
+</script>
+<style>
+    /* body { padding-top: 70px; padding-left: 20px;padding-right: 20px;padding-bottom: 20px; } */
+    .t-red{  color: red;  }
+    .w150{  width: 150px;  }
+    .w200{  width: 200px;  }
+    h1{
+        background: #2B6695;
+        border-radius: 6px 6px 6px 6px;
+        box-shadow: 0 0 0 1px #5F5A4B, 1px 1px 6px 1px rgba(10, 10, 0, 0.5);
+        color: #FFFFFF;
+        font-size: 17px;
+        font-weight: bold;
+        line-height: 25px;
+        margin: 15px 0 !important;
+        padding: 5px 0 5px 20px;
+        text-shadow: 2px 2px 3px #222222;
+    }
+    .pContent{font-size: 16px;text-indent: 2em;}
+</style>
+
+
+<div class="demo-nav" style="">
+    <div class="demo-nav__title">分类筛选</div>
+    <svg viewBox="0 0 1000 1000" class="demo-nav__back" onclick="location.href='/'">
+        <path fill="#969799" fill-rule="evenodd" d="M296.114 508.035c-3.22-13.597.473-28.499 11.079-39.105l333.912-333.912c16.271-16.272 42.653-16.272 58.925 0s16.272 42.654 0 58.926L395.504 498.47l304.574 304.574c16.272 16.272 16.272 42.654 0 58.926s-42.654 16.272-58.926 0L307.241 528.058a41.472 41.472 0 0 1-11.127-20.023z"></path>
+    </svg>
+</div>
+
+<div class="searchbox" id="basic_searchbox"></div>
+<%# <div id="basic_searchbox_param">查询参数:[]</div> %>
+
+<%# 搜索结果展示 %>
+<%#= content_tag :div, '', id: 'mycontainer', data: { source: @activities } %>
+<%= render "shared/table" ,activities: @activities%>   <!-- HERE -->
+
+<script>
+    $(function () {
+        $("#navbar>ul>li").on("click",function () {
+            $(this).addClass("active").siblings().removeClass('active');
+        });
+
+        var tag = window.location.hash;
+        tag=tag || '#main';
+        $(".navbar-nav>li>a[href='"+tag+"']").parent().trigger('click');
+
+        //基本例子
+        initBasic();
+        //日期自定义
+        initCustomDate()
+        //展开条件回调事件
+        initExpandEvent();
+        //默认值
+        initDefault();
+        //数据源格式自定义
+        initCustomData();
+        //方法调用
+        initFunctionCall();
+    });
+
+    //基本例子
+    function  initBasic() {
+        var options = {
+            //查询事件
+            "search": function (paramList) {
+                $("#basic_searchbox_param").html('查询参数:'+JSON.stringify(paramList));
+                console.log("function==initBasic paramList",paramList);
+                // 根据单个名字筛选
+                function filterByName(aim, name) {
+                    return aim.filter(item => item.AcClass == name)
+                }
+                // 输入 aim 'Leila' 期望输出为 [{name:'Leila', age: 16, gender:'female'}]
+                // console.log(filterByName($('#mycontainer').data('source'),'运动'))
+            
+                function updateAcClass(){
+                    $.ajax({
+                        url:'/static_pages/filterBySelect',
+                        data:{
+                            AcClass:paramList[0].ValueList,
+                            AcStartTime:paramList[1].ValueList
+                        },
+                        success:function(response){
+                            console.log("filterBySelect成功！");
+                            $("#mycontainer").replaceWith(response)  
+                            
+                        // $("#mycontainer").html(response);
+                        },
+                        error:function(error_res){
+                            console.log(error_res);
+                        }
+                    });
+                }
+                updateAcClass();
+                console.log("hahatest:", $('#mycontainer').data('source'))
+            },
+            //默认展开条件数
+            "expandRow": 2,
+            //查询条件
+            "searchBoxs": [
+                {
+                    "id": "AcClass",
+                    "title": "类型",
+                    "isMultiple":true,
+                    "data": [
+                        { "value": "娱乐", "text": "娱乐" },
+                        { "value": "运动", "text": "运动" },
+                        { "value": "讲座", "text": "讲座" },
+                        { "value": "旅游", "text": "旅游" },
+                        { "value": "聚餐", "text": "聚餐" },
+                        { "value": "桌游", "text": "桌游" },
+                        { "value": "讨论", "text": "讨论" }
+                    ]
+                },
+                {
+                    "id": "AcStartTime",
+                    "title": "时间",
+                    "isMultiple":false,
+                    "data": [
+                        { "value": "0", "text": "今天" },
+                        { "value": "1", "text": "明天" },
+                        { "value": "2", "text": "本周" },
+                        { "value": "3", "text": "本月" },
+                        { "value": "4", "text": "近期" }
+                    ]
+                },
+                {
+                    "id": "Createor_Basic",
+                    "title": "状态",
+                    "data": [
+                        { "value": "0", "text": "组队成功" },
+                        { "value": "1", "text": "组队中" },
+                        { "value": "2", "text": "组队失败" }
+                    ]
+                }, 
+            ]
+        };
+        $("#basic_searchbox").fiterMore(options);
+    }
+</script>

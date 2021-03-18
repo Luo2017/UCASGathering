@@ -1,0 +1,75 @@
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link href="../assets/style.css" rel="stylesheet">
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<meta name="App-Config" content="fullscreen=yes,useHistoryState=yes,transition=yes">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="yes" name="apple-touch-fullscreen">
+<meta content="telephone=no,email=no" name="format-detection">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+
+
+
+<div style="width:100%;height: 180px;background: #09a7c6">
+<div style="height: 15px"></div>
+   <div style="margin-left:44%;width:60px;height:60px;background-color:#ffffff;border-radius:50%"></div>
+    <div style="margin-top: 10px;text-align: center;color: #003249;font-size: 29px;font-family:STHeiti;font-weight:700 "><%= @cUser.usernickname %></div>
+    <div style="margin-top: 10px;text-align: center;color: #31385f;font-size: 17px;font-family:STHeiti;font-weight:700">简介：<%= @cUser.userintro %></div>
+</div>
+
+
+<div style="height: 30px"></div>
+
+<div class="container">
+<div class="row">
+<div class="col-md-8 activity-show-card activity-show-card-1">
+
+
+<div class="h3 alert"  onclick = "window.location.href = '/my_page_info'">
+   <div style="text-align: center; font-size: 28px;color: #5a74c8; font-weight:600"> 个人信息 </div>
+</div>
+
+</div>
+</div>
+</div>
+
+
+<div class="container">
+<div class="row">
+<div class="col-md-8 activity-show-card activity-show-card-2" onclick = "window.location.href = '/my_page_activities'">
+
+
+<div class="h3 alert">
+   <div style="text-align: center; font-size: 28px; color: #5a74c8; font-weight:600"> 我的活动 </div>
+</div>
+
+</div>
+</div>
+</div>
+
+
+<div class="container">
+<div class="row">
+<div class="col-md-8 activity-show-card activity-show-card-3" onclick = "window.location.href = '/my_page_activities_joined'">
+
+
+<div class="h3 alert">
+   <div style="text-align: center; font-size: 28px;color: #5a74c8; font-weight:600"> 我的参与 </div>
+</div>
+
+
+</div>
+</div>
+</div>
+
+<div class="actions">
+    <p style="text-align:center">
+    <button class="btn-activity-hover color-4" type="button"  onclick = "window.location.href = '/'">退出登陆</button>
+    </p>
+  </div>
+
+<%=render 'layouts/activities/my_footer'%>
+
+
+

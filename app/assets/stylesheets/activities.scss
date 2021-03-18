@@ -1,0 +1,314 @@
+// Place all the styles related to the activities controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+
+.activity-notice{
+  font-size:20px;
+  color:#668c6f;
+  margin-top:3px;
+  background-color:#def0d8;
+  border-radius:5px;
+  text-align:center;
+}
+
+.activity-errors-warn{
+  font-size:18px;
+  color:#661f57;
+  margin-top:3px;
+  background-color:#cc867c;
+  border-radius:5px;
+  text-align:center;
+}
+
+// 活动相关button样式
+.btn-activity-hover {
+  width: 120px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  margin: 20px;
+  height: 40px;
+  text-align:center;
+  border: none;
+  background-size: 300% 100%;
+
+  border-radius: 50px;
+  moz-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
+
+.btn-activity-hover:hover {
+  background-position: 100% 0;
+  moz-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
+
+.btn-activity-hover:focus {
+  outline: none;
+}
+
+
+.btn-activity-hover.color-1 {
+  background-image: linear-gradient(to right, #25aae1, #40e495, #30dd8a, #2bb673);
+  box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75);
+}
+.btn-activity-hover.color-2 {
+  background-image: linear-gradient(to right, #f5ce62, #e43603, #fa7199, #e85a19);
+  box-shadow: 0 4px 15px 0 rgba(229, 66, 10, 0.75);
+}
+.btn-activity-hover.color-3 {
+  background-image: linear-gradient(to right, #667eea, #764ba2, #6B8DD6, #8E37D7);
+  box-shadow: 0 4px 15px 0 rgba(116, 79, 168, 0.75);
+}
+.btn-activity-hover.color-4 {
+  background-image: linear-gradient(to right, #fc6076, #ff9a44, #ef9d43, #e75516);
+  box-shadow: 0 4px 15px 0 rgba(252, 104, 110, 0.75);
+}
+.btn-activity-hover.color-5 {
+  background-image: linear-gradient(to right, #0ba360, #3cba92, #30dd8a, #2bb673);
+  box-shadow: 0 4px 15px 0 rgba(23, 168, 108, 0.75);
+}
+.btn-activity-hover.color-6 {
+  background-image: linear-gradient(to right, #009245, #FCEE21, #00A8C5, #D9E021);
+  box-shadow: 0 4px 15px 0 rgba(83, 176, 57, 0.75);
+}
+.btn-activity-hover.color-7 {
+  background-image: linear-gradient(to right, #6253e1, #852D91, #A3A1FF, #F24645);
+  box-shadow: 0 4px 15px 0 rgba(126, 52, 161, 0.75);
+}
+.btn-activity-hover.color-8 {
+  background-image: linear-gradient(to right, #29323c, #485563, #2b5876, #4e4376);
+  box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
+}
+.btn-activity-hover.color-9 {
+  background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+  box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+}
+.btn-activity-hover.color-10 {
+      background-image: linear-gradient(to right, #ed6ea0, #ec8c69, #f7186a , #FBB03B);
+  box-shadow: 0 4px 15px 0 rgba(236, 116, 149, 0.75);
+}
+.btn-activity-hover.color-11 {
+     background-image: linear-gradient(to right, #eb3941, #f15e64, #e14e53, #e2373f);  box-shadow: 0 5px 15px rgba(242, 97, 103, .4);
+}
+
+.btn-activity-hover.color-12 {
+  background-image: linear-gradient(to right, #08a7c5, #00fffa, #00ffa2, #00ff09);
+  box-shadow: 0 4px 15px 0 rgba(236, 116, 149, 0.75);
+}
+
+
+
+// 活动展示页相关样式
+
+.activity-show-card{
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+    transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+padding: 2px 80px 18px 36px;
+//   cursor: pointer; //手型鼠标
+}
+
+// .activity-show-card:hover{
+//      transform: scale(1.05);
+//   box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+// }
+
+.activity-show-card h3{
+font-weight: 600;
+}
+
+.activity-show-card img{
+position: absolute;
+max-height: 200px;
+}
+
+.activity-show-card-1{
+background-image: url(https://ionicframework.com/img/getting-started/ionic-native-card.png);
+    background-repeat: no-repeat;
+  background-position: right;
+  background-size: 80px;
+}
+
+.activity-show-card-2{
+ background-image: url(https://ionicframework.com/img/getting-started/components-card.png);
+    background-repeat: no-repeat;
+  background-position: right;
+  background-size: 80px;
+}
+
+.activity-show-card-3{
+ background-image: url(https://ionicframework.com/img/getting-started/theming-card.png);
+    background-repeat: no-repeat;
+  background-position: right;
+  background-size: 150px;
+}
+
+// 如果文档宽度小于990像素
+@media(max-width: 990px){
+.activity-show-card{
+  margin: 20px;
+}
+}
+
+
+.activity-show-background{
+  background:linear-gradient(90deg, #a1c4fd 0%,#c2e9fb 100% );
+}
+
+.activity-show-title{
+  font-size: 14px;
+  // font-weight: bolder;
+  padding-bottom: 4px;
+  font-family: 黑体;
+  // color:#536bb6;
+  color:#4a60a3;
+}
+
+
+// 水平分割线
+.activity-show-line {
+margin: 0;
+border: 0;
+height: 2px;
+margin-bottom: 5px;
+background: #333; /* Chrome,Safari4+ */
+background: -webkit-gradient(linear, left top, right top, color-stop(0%,#34495e), color-stop(10%,#34495e), color-stop(10%,#207cca), color-stop(24%,#2989d8), color-stop(24%,#34495e), color-stop(42%,#34495e), color-stop(42%,#207cca), color-stop(70%,#207cca), color-stop(70%,#207cca), color-stop(70%,#34495e), color-stop(100%,#34495e)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(left,  #34495e 0%,#34495e 10%,#207cca 10%,#2989d8 24%,#34495e 24%,#34495e 42%,#207cca 42%,#207cca 70%,#207cca 70%,#34495e 70%,#34495e 100%); /* Chrome10+,Safari5.1+ */
+background-image: -moz-linear-gradient(left, #34495e 0%, #34495e 9%, #207cca 10%, #2989d8 24%, #34495e 24%, #34495e 42%, #207cca 42%, #207cca 70%, #207cca 70%, #34495e 71%, #34495e 100%);
+background-image: -o-linear-gradient(left, #34495e 0%, #34495e 9%, #207cca 10%, #2989d8 24%, #34495e 24%, #34495e 42%, #207cca 42%, #207cca 70%, #207cca 70%, #34495e 71%, #34495e 100%);
+background-image: linear-gradient(left, #34495e 0%, #34495e 9%, #207cca 10%, #2989d8 24%, #34495e 24%, #34495e 42%, #207cca 42%, #207cca 70%, #207cca 70%, #34495e 71%, #34495e 100%); /* Chrome10+,Safari5.1+ */   
+}
+
+
+
+// loading效果
+.spinner {
+  -webkit-animation: rotator 1.4s linear infinite;
+          animation: rotator 1.4s linear infinite;
+}
+
+@-webkit-keyframes rotator {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(270deg);
+  }
+}
+
+@keyframes rotator {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(270deg);
+  }
+}
+.path {
+  stroke-dasharray: 187;
+  stroke-dashoffset: 0;
+  transform-origin: center;
+  -webkit-animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
+          animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
+}
+
+@-webkit-keyframes colors {
+  0% {
+    stroke: #4285F4;
+  }
+  25% {
+    stroke: #DE3E35;
+  }
+  50% {
+    stroke: #F7C223;
+  }
+  75% {
+    stroke: #1B9A59;
+  }
+  100% {
+    stroke: #4285F4;
+  }
+}
+
+@keyframes colors {
+  0% {
+    stroke: #4285F4;
+  }
+  25% {
+    stroke: #DE3E35;
+  }
+  50% {
+    stroke: #F7C223;
+  }
+  75% {
+    stroke: #1B9A59;
+  }
+  100% {
+    stroke: #4285F4;
+  }
+}
+@-webkit-keyframes dash {
+  0% {
+    stroke-dashoffset: 187;
+  }
+  50% {
+    stroke-dashoffset: 46.75;
+    transform: rotate(135deg);
+  }
+  100% {
+    stroke-dashoffset: 187;
+    transform: rotate(450deg);
+  }
+}
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 187;
+  }
+  50% {
+    stroke-dashoffset: 46.75;
+    transform: rotate(135deg);
+  }
+  100% {
+    stroke-dashoffset: 187;
+    transform: rotate(450deg);
+  }
+}
+
+.loading-text{
+  text-align: center;
+  font-size: 25px;
+  font-weight: 700;
+  color: #667eea;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+// 展示图片
+.activity-show-image{
+margin-top:10px;
+margin-left:15%;
+align:center;
+height:200px;width:200px;
+}
+
+
+.my-page-show-card{
+border-radius: 4px;
+background: #fff;
+box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+  transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+padding: 2px 80px 18px 36px;
+//   cursor: pointer; //手型鼠标
+}
+
+.my-page-show-card:hover{
+   transform: scale(1.05);
+box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}

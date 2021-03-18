@@ -1,0 +1,168 @@
+<% provide(:title, "活动详情")%>
+<%= render '/layouts/activities/header'%>
+
+<script type="text/javascript">
+    function confirm_destroy(id) {
+        console.log(id);
+        var select = window.confirm("确认删除当前活动吗？");
+        if(select == true) {
+            window.location ="/destroy_activity/" + id;
+        }
+    }
+</script>
+
+
+<div class="container">
+<div class="row">
+<div class="col-md-8 activity-show-card activity-show-card-3">
+
+<div class="activity-notice">
+  <%= notice%>
+</div>
+
+
+<span class="badge badge-secondary">活动页</span>
+<div class="btn btn-secondary btn-lg active btn-sm pull-right" role="button"  aria-pressed="true">
+    <%= link_to "返回", :back,:style=>"color:white"%>
+</div>
+
+<div class="h4 alert alert-primary activity-show-background">
+   <p class="activity-show-title"> 活动标题 </p>
+    <hr class="activity-show-line">
+    <%= @activity.AcTitle %>
+</div>
+
+<div class="h4 alert alert-primary activity-show-background">
+    <p class="activity-show-title">活动地点</p>
+     <hr class="activity-show-line">
+     <%= @activity.AcSitu %>
+</div>
+
+<div class="h4 alert alert-primary activity-show-background">
+    <p class="activity-show-title">活动类别</p>
+     <hr class="activity-show-line"> 
+      <%= @activity.AcClass %>
+</div>
+
+<%# 应当修改为用户名 %>
+<div class="h4 alert alert-primary activity-show-background">
+    <p class="activity-show-title">发起人id</p> 
+     <hr class="activity-show-line">
+     <%= @activity.UserId %>
+</div>
+
+
+<div class="h4 alert alert-primary activity-show-background">
+    <p class="activity-show-title">活动状态</p> 
+     <hr class="activity-show-line">
+    <% status = @activity.AcStatus %>
+    <% puts "当前活动状态为： = #{@activity.AcStatus}"%>
+    <% if status == "0" %>
+    <p style="color:darkmagenta;">
+    <%= "正在审核中..."%>
+    </p>
+    <% elsif status == "1"%>
+    <p style="color:green;">
+    <%= "正在进行..." %>
+    </p>
+    <% elsif status == "2"%>
+    <p style="color:red;">
+    <%= "审核失败,活动终止,您可以尝试重新更改后提交" %>
+    </p>
+    <% elsif status == "3"%>
+    <p style="color:palevioletred;">
+    <%= "报名已结束" %>
+    <%end%>
+</div>
+
+
+<div class="h4 alert alert-primary activity-show-background">
+    <p class="activity-show-title">活动时间</p> 
+     <hr class="activity-show-line">
+    <%= @activity.AcStartTime.strftime('%Y-%m-%d %H:%M:%S') %>
+</div>
+
+<div class="h4 alert alert-primary activity-show-background">
+    <p class="activity-show-title">报名截止时间</p> <hr class="activity-show-line">
+     <%= @activity.AcEndTime.strftime('%Y-%m-%d %H:%M:%S') %>
+</div>
+
+<div class="h4 alert alert-primary activity-show-background">
+    <p class="activity-show-title">活动目标人数</p>
+     <hr class="activity-show-line">
+      <%= @activity.AcCount%> 人
+</div>
+
+<!--通过点击活动人数可以跳转到参与者页面 -->
+<div class="h4 alert alert-primary activity-show-background">
+    <p class="activity-show-title">当前活动人数</p>
+     <hr class="activity-show-line">
+      <%= link_to @activity.followers.count, {:controller => "activities", :action => "followers"}%> 人
+</div>
+
+<div class="h4 alert alert-primary activity-show-background">
+    <p class="activity-show-title">活动时长</p>
+     <hr class="activity-show-line">
+      <%= @activity.AcDura %> 小时
+</div>
+
+<div class="h4 alert alert-primary activity-show-background">
+    <p class="activity-show-title">是否私密</p>  
+     <hr class="activity-show-line">
+    <% isPra = @activity.AcIsPra %>
+    <% if isPra == 0 %>
+    <%= "否"%>
+    <% elsif isPra == 1%>
+    <%= "是"%>
+    <%end%>
+</div>
+
+<div class="h4 alert alert-primary activity-show-background">
+    <p class="activity-show-title">活动简介</p> 
+     <hr class="activity-show-line">
+      <%= @activity.AcIntro %>
+</div>
+
+
+<% if @activity.picture? %>
+<div class="h4 alert alert-primary activity-show-background">
+    <p class="activity-show-title">图片介绍</p> 
+     <hr class="activity-show-line">
+     <div class="activity-show-image">
+      <img src=<%= @activity.picture.url%> style="height:190px;width:190px;align:center;"/>
+    </div>
+</div>
+<% end%>
+
+<div class="btn btn-secondary btn-lg active btn-sm" role="button"  aria-pressed="true">
+    <%= link_to "返回", :back,:style=>"color:white"%>
+</div>
+<!--<a href="<%= activities_path%>" class="btn btn-secondary btn-lg active btn-sm" role="button"  aria-pressed="true">返回</a>-->
+<%#用户浏览自己创建的活动时,并且活动没有到截止时间，显示“返回，编辑，删除” #%>
+<% if @isCorrectUser == 1 && @activityIsEnded == 0%>
+<a href="<%= edit_activity_path(@activity)%>" class="btn btn-secondary btn-lg active btn-sm" role="button" aria-pressed="true" style="align:right">编辑</a>
+<a class="btn btn-secondary btn-lg active btn-sm" role="button"  aria-pressed="true" onclick="confirm_destroy(<%= @activity.id %>)">删除</a>
+<%# 现在改为不经过审核即可发布处于进行状态，状态值为1，其它用户可以加入状态值为1的活动 %>
+<% elsif (@isCorrectUser == 0 && @activityIsEnded == 0 && @activity.AcStatus == "1")%>
+<%# 
+
+---- 判断当前用户是否加入的功能，在follow_form中已经实现
+%>
+
+<%# 如果不是活动拥有者，并且活动已经审核成功正在进行中，则显示可以加入按钮 %>
+<div style="margin-top:10px">
+<%= render 'follow_form' if logged_in? %>
+<div>
+<% end%>
+<br/>
+
+</div>
+</div>
+</div>
+
+
+
+<%=render 'layouts/activities/self_footer'%>
+
+
+

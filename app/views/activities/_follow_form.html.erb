@@ -1,0 +1,13 @@
+<% unless current_user?(@user) %>
+  <div id="follow_form">
+  <!--判断当前用户是否已加入活动，如果已加入，则应该显示退出活动按钮，如果未加入，则应该显示加入按钮 -->
+    <% if current_user.following?(@activity) %>
+      <%= render 'unfollow' %>
+    <%elsif @activity.AcIsPra == 0 %>
+      <%= render 'follow' %>
+    <% else %>
+    <% puts "!!!!#{@activity.id}"%>
+      <%= render 'follow_with_pass' %>
+    <% end %>
+  </div>
+<% end %>

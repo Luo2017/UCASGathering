@@ -1,0 +1,148 @@
+
+
+<style type="text/css">
+</style>
+
+<script type="text/javascript">
+
+function load(x) {
+// var input = document.getElementsByName("activity[AcIsPra]");  
+  console.log(x.value);
+  var ac_pass_field = document.getElementById("ac_pass");
+  console.log("ac: r= " + ac_pass_field.required);
+  if(x.value == 1) {
+    ac_pass_field.required = true;  //当选择是时密码不能为空
+    ac_pass_field.disabled = false;
+  } else if(x.value == 0) {
+    ac_pass_field.required = false;
+    ac_pass_field.value = ""; 
+    ac_pass_field.disabled = true;
+  }
+};
+</script>
+
+<%# 这里会跳转到 /activities，即 post请求的create动作上 %>
+
+<form action="/create_activity" method="post" enctype="multipart/form-data">
+
+<div class="container">
+<div class="row">
+<div class="col-md-8">
+
+<div class="btn btn-secondary btn-lg active btn-sm" role="button"  aria-pressed="true">
+    <%= link_to "返回", :back,:style=>"color:white"%>
+</div>
+<!--<a href="<%= activities_path%>" class="btn btn-secondary btn-lg active btn-sm" role="button"  aria-pressed="true">返回</a>-->
+
+<br>
+<br>
+
+
+   <div class="form-group">
+      <label for="ac_title">活动标题（不超过50个字符）</label>
+      <input name="activity[AcTitle]" id="ac_title" class="form-control" maxlength="50" />
+  </div>
+
+  <div class="form-group">
+      <label for="ac_title">活动地点</label>
+      <input name="activity[AcSitu]" id="ac_situ" class="form-control" required/>
+  </div>
+
+
+  <div class="form-group">
+    <label for="ac_class">活动类别</label>
+    <select id="ac_class" name="activity[AcClass]" class="form-control" required >
+      <option>旅游</option>
+      <option>运动</option>
+      <option>聚餐</option>
+      <option>桌游</option>
+      <option>讨论</option>
+      <option>讲座</option>
+      <option>娱乐</option>
+    </select>
+  </div>
+
+
+    <div class="form-group">
+      <label for="ac_start_time">开始时间</label>
+      <input name="activity[AcStartTime]" id="ac_start_time" class="form-control" type="datetime-local" required/>
+  </div>
+
+  <div class="form-group">
+    <label for="ac_dura">活动时长</label>
+    <input id="ac_dura" class="form-control" type="number" name="activity[AcDura]" min="0.1" max="1024" step="0.1" placeholder="单位：小时" required/> 
+  </div>
+
+
+  <div class="form-group">
+    <label for="ac_count">活动人数（不超过100人）</label>
+    <input id="ac_count" class="form-control" type="number" name="activity[AcCount]" min="1" max="100" step="1" placeholder="单位：人" required/> 
+  </div>
+
+  <div class="form-group">
+      <label>是否设为私密</label><br>
+      <input class="form-radio" name="activity[AcIsPra]" type="radio" id="ac_is_pra" value="1" onclick="load(this)"/>
+      <label for="ac_is_pra"><font color="#b06ab3">是</font></label>
+      <input class="form-radio" name="activity[AcIsPra]" type="radio" id="ac_is_not_pra" value="0" checked onclick="load(this)"/>
+      <label for="ac_is_not_pra"><font color="#b06ab3">否</font></label>
+  </div>
+
+  <div class="form-group">
+    <label for="ac_pass">私密活动口令（活动口令只能由4位数字组成）</label>
+    <input name="activity[AcPass]" id="ac_pass" class="form-control" type="password" disabled/>
+  </div>
+
+
+
+  <div class="form-group">
+  <label for="ac_intro">活动简介</label>
+  <textarea id="ac_intro" class="form-control" aria-label="With textarea" name="activity[AcIntro]" rows="10" maxlength="1000" required></textarea>
+  </div>
+
+  <br>
+  <div class="form-group">
+      <label for="ac_end_time">报名截止时间</label>
+      <input name="activity[AcEndTime]" id="ac_end_time" class="form-control" type="datetime-local" required/>
+  </div>
+
+  <br/>
+  <div class="custom-file">
+    <input type="file" name="activity[picture]" class="custom-file-input" id="ac_picture" accept="image/png, image/jpeg, image/gif, image/jpg">
+    <label class="custom-file-label" for="customFile">上传图片</label>
+  </div>
+  <br/>
+  <br/>
+  <div class="actions">
+    <p style="text-align:center">
+    <input class="btn-activity-hover color-9" type="submit" name="commit" value="提交活动">
+    </p>
+  </div>
+
+</div>
+</div>
+
+</form>
+
+<script type="text/javascript"> 
+// 在客户端的对图片检查的另一个措施
+// 检查图片的尺寸，图片太大就会跳出一个提示框
+$('#ac_picture').bind('change',function(){
+  console.log("我在执行检查图片大小的函数");
+  var size_in_megabytes = this.files[0].size/1024/1024;
+  console.log(size_in_megabytes + "MB");
+  if(size_in_megabytes > 5){
+    alert('只能上传5MB以下大小的图片，请重新选择!');
+  }
+  var picture_name = this.files[0].name;
+  if (!picture_name.match(/.jpg|.gif|.png|.jpeg/i)){
+      return alert("您上传的图片格式不正确，请重新选择！");
+  }
+  console.log(picture_name);
+});
+</script>
+
+
+
+
+
+

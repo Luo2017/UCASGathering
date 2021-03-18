@@ -1,0 +1,10 @@
+<!--统计用户加入的活动数的局部视图-->
+<% @user ||= current_user %>
+<div class="stats_user">
+  <a href="<%= following_user_path(@user) %>">
+    已加入活动数:
+    <strong id="following" class="stat">
+      <%= @user.following.count %>
+    </strong>
+  </a>
+</div>

@@ -1,0 +1,57 @@
+<% provide(:title, "个人信息")%>
+<%= render '/layouts/activities/header'%>
+<div class="container">
+<div class="row">
+<div class="col-md-8 activity-show-card activity-show-card-3">
+
+
+<span class="badge badge-secondary">个人信息页</span>
+
+
+<div class="h4 alert alert-primary activity-show-background">
+   <p class="activity-show-title"> 用户名 </p>
+    <hr class="activity-show-line">
+    <%= @cUser.username %>
+</div>
+
+<div class="h4 alert alert-primary activity-show-background">
+   <p class="activity-show-title"> 昵称 </p>
+    <hr class="activity-show-line">
+    <%= @cUser.usernickname %>
+</div>
+
+<div class="h4 alert alert-primary activity-show-background">
+   <p class="activity-show-title"> 性别 </p>
+    <hr class="activity-show-line">
+    <%= @cUser.usersex %>
+</div>
+
+<div class="h4 alert alert-primary activity-show-background">
+    <p class="activity-show-title">电话</p>
+     <hr class="activity-show-line"> 
+      <%= @cUser.usermobile %>
+</div>
+
+<div class="h4 alert alert-primary activity-show-background">
+    <p class="activity-show-title">学院</p>
+     <hr class="activity-show-line"> 
+      <%= @cUser.usercollege %>
+</div>
+
+<div class="h4 alert alert-primary activity-show-background">
+   <p class="activity-show-title"> 生日 </p>
+    <hr class="activity-show-line">
+    <%= @cUser.userbirth %>
+</div>
+
+
+<div class="btn btn-secondary btn-lg active btn-sm" role="button"  aria-pressed="true">
+    <%= link_to "返回", :back,:style=>"color:white"%>
+</div>
+
+</div>
+</div>
+</div>
+
+<%=render 'layouts/activities/self_footer'%>
+

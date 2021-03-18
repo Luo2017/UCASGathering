@@ -1,0 +1,38 @@
+<br>
+<br>
+<br>
+<br>
+<%# 本文件用在views/activities的视图中 %>
+<%# 这个底部导航栏局部视图点亮了发起 %>
+<div class="van-tabbar van-tabbar--fixed">
+
+  <div class="van-tabbar-item" onclick="location.href='/'">
+    <div class="van-tabbar-item__icon">
+      <span class="glyphicon glyphicon-home"></span>
+    </div>
+    <div class="van-tabbar-item__text">首页</div>
+  
+  </div>
+ 
+  <div class="van-tabbar-item van-tabbar-item--active"  onclick="location.href='/new_activity'">
+    <div class="van-tabbar-item__icon">
+      <span class="glyphicon glyphicon-pencil"></span>
+    </div>
+    <div class="van-tabbar-item__text">发起</div>
+  </div>
+  
+  
+  <%# <div class="van-tabbar-item" onclick="location.href='/activities'">
+      <div class="van-tabbar-item__icon">
+        <span class="glyphicon glyphicon-star-empty">
+      </div>
+      <div class="van-tabbar-item__text">动态</div>
+  </div>  %>
+  <div class="van-tabbar-item" onclick="location.href='/my_page'">
+      <div class="van-tabbar-item__icon">
+        <span class="glyphicon glyphicon-user">
+      </div>
+      <div class="van-tabbar-item__text">我的</div>
+  </div>
+</div> 
+

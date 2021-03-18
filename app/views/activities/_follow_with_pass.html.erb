@@ -1,0 +1,53 @@
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+    function is_pass_correct(correct_pass) {
+        var input_pass = document.getElementById("pass").value;
+        console.log(input_pass);
+        if (correct_pass == input_pass){
+            var form = document.getElementById("test_form");
+            form.submit();
+        }
+        else{
+            alert('口令错误，请重新输入!');
+        }
+    }       
+</script>
+
+<%= form_for(current_user.active_relationships.build,remote: true,html: { id: "test_form" }) do |f| %>
+  <!--将followed_act_id隐藏在表单中，但浏览器不显示，在relationships_controller中要用followed_act_id去查找相应活动-->
+  <div><%= hidden_field_tag :followed_act_id, @activity.id %></div>
+<% end %>
+
+
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+	加入活动
+</button>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					请输入口令
+				</h4>
+			</div>
+			<div class="modal-body">
+				<input type="text" id = "pass">
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+				</button>
+				<button type="button" class="btn btn-primary" onclick = "is_pass_correct(<%= @activity.AcPass %>)">
+					提交口令
+				</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>

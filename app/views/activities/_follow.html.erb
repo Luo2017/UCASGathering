@@ -1,0 +1,8 @@
+<!--加入活动-->
+<!--构建一个新的active_relationships关系，向Relationships的create动作发送一个POST请求-->
+
+<%= form_for(current_user.active_relationships.build,remote: true) do |f| %>
+  <!--将followed_act_id隐藏在表单中，但浏览器不显示，在relationships_controller中要用followed_act_id去查找相应活动-->
+  <div><%= hidden_field_tag :followed_act_id, @activity.id %></div>
+  <%= f.submit "加入活动", class: "btn btn-primary" %>
+<% end %>

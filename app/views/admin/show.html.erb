@@ -1,0 +1,81 @@
+<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<style type="text/css">
+  /*包含以下四种的链接*/
+  a {
+    text-decoration: none;
+    color: #000000;
+  }
+
+  /*正常的未被访问过的链接*/
+  a:link {
+    text-decoration: none;
+  }
+
+  /*已经访问过的链接*/
+  a:visited {
+    text-decoration: none;
+  }
+
+  /*鼠标划过(停留)的链接*/
+  a:hover {
+    text-decoration: none;
+    background: none;
+  }
+
+  /* 正在点击的链接*/
+  a:active {
+    text-decoration: none;
+  }
+</style>
+
+<div style="width: 60%;margin: 10px auto">
+  <!--  <div class="page-header">-->
+  <!--    <h3>后台管理界面 <small style="font-size: 12px;color: #258df4">-------果壳小聚</small></h3>-->
+  <!--  </div>-->
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark" style="margin-bottom: -1px">
+    <!-- Brand/logo -->
+    <div   style="margin-right: 30px;text-align: center"><%= image_tag "icon.png",:width => 50 %></div>
+    <!-- Links -->
+    <ul class="navbar-nav">
+      <li class="nav-item" style="margin-right: 30px">
+        <a class="nav-link" href="#" style="font-size: 14px;color: #FFFFFF;text-align: center"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;用户管理</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/admin/activityshow" style="font-size: 14px"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;活动管理</a>
+      </li>
+    </ul>
+  </nav>
+  <table class="table table-hover">
+    <tr style="font-weight: bold">
+      <td>学号</td>
+      <td>姓名</td>
+      <td>昵称</td>
+      <td>手机号</td>
+      <td>性别</td>
+      <td>学院</td>
+      <td>操作</td>
+    </tr>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.userid %></td>
+        <td><%= user.username %></td>
+        <td><%= user.usernickname %></td>
+        <td><%= user.usermobile %></td>
+        <td><%= user.usersex %></td>
+        <td><%= user.usercollege %></td>
+        <td>
+          <span class="glyphicon glyphicon-remove"></span> <%= link_to '删除', :action => "delete", data: {confirm: 'Are you sure?', userid: user.userid} %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

@@ -1,0 +1,33 @@
+<% provide(:title, "我的参与")%>
+<%= render '/layouts/activities/header'%>
+
+
+<% @relationships.each do |r|%>
+<% if r.follower_user_id.to_i == @pId.to_i%>
+<% a = r.followed_act %>
+<% if a %>
+<div class="container">
+<div class="row">
+<div class="col-md-8 activity-show-card activity-show-card-2" onclick = "window.location.href = '/activities/' + <%= a.id%> ">
+
+<div class="h4 alert alert-primary activity-show-background">
+   <p class="activity-show-title"> 活动名(点击查看详情)  </p>
+    <hr class="activity-show-line">
+    <%= a.AcTitle %>
+</div>
+
+</div>
+</div>
+</div>
+<% end%>
+<% end%>
+<% end%>
+
+<div class="btn btn-secondary btn-lg active btn-sm" role="button"  aria-pressed="true" style="margin-top:10px;margin-left:30px;">
+    <%= link_to "返回", :back,:style=>"color:white"%>
+</div>
+<br/>
+<br/>
+
+<%=render 'layouts/activities/self_footer'%>
+

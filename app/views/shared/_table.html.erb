@@ -1,0 +1,44 @@
+<div id="mycontainer">
+    <br>
+    <% if @query_string.blank? %>
+        <%# <h4 class="search-info-title">搜索信息不能为空，请输入关键字搜索</h4> %>
+    <% elsif @activities.blank? %>
+        <br>
+        <h4 class="search-info-title">亲，没有搜索到相关活动信息哦，要不换个关键词试试？</h4>
+    <% else %>
+        <h4 class="search-info-title"> 有关"<%= @query_string %>"的活动信息 </h4>
+    <% end %>
+    <% if !@activities.blank? %>
+        <% @activities.each do |activity| %>
+            <div class="card " style="max-heigth: 100px;" onclick="location.href='/activities/<%=activity.id%>'">
+                    <%# <div class="card-body"> %>
+                        <div class="row">
+                            <div class="col-4">
+                            <div class="card-body">
+                                <%= image_tag(activity.picture.url, class: 'initImg coverImg') if activity.picture? %>
+                                <%= image_tag("without_picture.png", :class=>'initImg coverImg') if !activity.picture? %>
+                            </div>
+                            </div>
+                            <div class="col-8">
+                            <div class="card-body">
+                                <p class="card-text">
+                                    <small class="text-muted">
+                                    <p><span class="label label-success"><%= t(activity.AcClass) %></span></p>
+                                        <%#= activity.AcClass %>
+                                    </small>
+                                </p>
+                                <h5 class="card-title"><%= activity.AcTitle %></h5>
+                                <p class="card-text">
+                                    简介：<%= activity.AcIntro %>
+                                    <br>
+                                    地点:<%= activity.AcSitu %>
+                                </p>
+                                <p class="card-text">时间：<small class="text-muted"><%= activity.AcStartTime.strftime('%Y-%m-%d %H:%M:%S') %></small></p>
+                            </div>
+                            </div>
+                    </div> 
+                    <%# </div> %>
+            </div>
+        <% end %>
+    <% end %>
+</div>

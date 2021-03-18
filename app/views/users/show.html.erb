@@ -1,0 +1,40 @@
+<% provide(:title, "用户详情")%>
+<%= render '/layouts/activities/header'%>
+<div class="container">
+<div class="row">
+<div class="col-md-8 activity-show-card activity-show-card-3">
+
+<div class="activity-notice">
+  <%= notice%>
+</div>
+
+<span class="badge badge-secondary">用户页</span>
+
+<div class="h4 alert alert-primary activity-show-background">
+   <p class="activity-show-title"> 用户名 </p>
+    <hr class="activity-show-line">
+    <%= @user.username %>
+</div>
+
+
+<div class="h4 alert alert-primary activity-show-background">
+    <p class="activity-show-title">用户电话</p>
+     <hr class="activity-show-line"> 
+      <%= @user.usermobile %>
+</div>
+
+
+
+<!--通过点击参加活动数可以展示该用户参与的活动 -->
+<div class="h4 alert alert-primary activity-show-background">
+    <p class="activity-show-title">参加活动数</p>
+     <hr class="activity-show-line">
+      <%= link_to @user.following.count, {:controller => "users", :action => "following"}%> 个活动
+</div>
+
+</div>
+</div>
+</div>
+
+<%=render 'layouts/activities/self_footer'%>
+

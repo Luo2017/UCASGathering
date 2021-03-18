@@ -1,0 +1,9 @@
+<!--活动成员人数统计的局部视图 -->
+<div class="stats_activity">
+    <a href="<%= followers_activity_path(@activity) %>">
+        当前活动成员人数:
+        <strong id="followers" class="stat">
+        <%= @activity.followers.count %>
+        </strong>
+    </a>
+</div>
